@@ -21,14 +21,9 @@
         alert(`${postId}번째 게시글을 클릭했습니다.`);
       }
       $(document).ready(function () {
-        $('#post-1').click(function () {
-          clickPost(1);
-        });
-        $('#post-2').click(function () {
-          clickPost(2);
-        });
-        $('#post-3').click(function () {
-          clickPost(3);
+        $('.fastCampus').click(function () {
+          let id = $(this).attr('id');
+          clickPost(id);
         });
       });
     </script>
@@ -45,19 +40,19 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <tr id="post-3">
+          <tr id="3" class="fastCampus">
             <th scope="row" class="text-center">3</th>
             <td class="text-center">세번째 글입니다</td>
             <td class="text-center">조수진</td>
             <td class="text-center">2022.12.11</td>
           </tr>
-          <tr id="post-2">
+          <tr id="2" class="fastCampus">
             <th scope="row" class="text-center">2</th>
             <td class="text-center">두번째로 작성한 글입니다</td>
             <td class="text-center">조수진</td>
             <td class="text-center">2022.12.11</td>
           </tr>
-          <tr id="post-1">
+          <tr id="1" class="fastCampus">
             <th scope="row" class="text-center">1</th>
             <td class="text-center">첫번째 게시글입니다</td>
             <td class="text-center">조수진</td>
