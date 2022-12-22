@@ -20,11 +20,17 @@
       function clickPost(postId) {
         alert(`${postId}번째 게시글을 클릭했습니다.`);
       }
-      $(document).ready(function () {
-        $('.fastCampus').click(function () {
-          let id = $(this).attr('id');
-          clickPost(id);
-        });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const posts = document.querySelectorAll('.fastCampus');
+        for (let i = 0; i < posts.length; i++) {
+          posts[i].addEventListener('click', () => {
+            let id = posts[i].dataset.id;
+            let view = posts[i].dataset.view;
+            let str = `[ 조회수: ${view}] id`;
+            clickPost(str);
+          });
+        }
       });
     </script>
   </head>
@@ -40,19 +46,19 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <tr id="3" class="fastCampus">
+          <tr id="post-3" class="fastCampus" data-id="3" data-view="10">
             <th scope="row" class="text-center">3</th>
             <td class="text-center">세번째 글입니다</td>
             <td class="text-center">조수진</td>
             <td class="text-center">2022.12.11</td>
           </tr>
-          <tr id="2" class="fastCampus">
+          <tr id="post-2" class="fastCampus" data-id="2" data-view="13">
             <th scope="row" class="text-center">2</th>
             <td class="text-center">두번째로 작성한 글입니다</td>
             <td class="text-center">조수진</td>
             <td class="text-center">2022.12.11</td>
           </tr>
-          <tr id="1" class="fastCampus">
+          <tr id="post-1" class="fastCampus" data-id="1" data-view="12">
             <th scope="row" class="text-center">1</th>
             <td class="text-center">첫번째 게시글입니다</td>
             <td class="text-center">조수진</td>

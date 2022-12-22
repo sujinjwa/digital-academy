@@ -1,0 +1,27 @@
+body {
+  background-color: #edeae9;
+}
+
+.product-list {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.list-group-item {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+#list-group-last-item {
+  border-bottom: none;
+}
+
+.product-image {
+  width: 100px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
