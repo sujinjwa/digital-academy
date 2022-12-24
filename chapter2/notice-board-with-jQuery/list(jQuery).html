@@ -17,54 +17,22 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      // vanillaJS 버전
-      // 모달 창에 제목과 내용 넣는 함수
-      function openModal(row) {
-        const modalTitle = document.querySelector('.modal-title');
-        const modalBody = document.querySelector('.modal-body');
+      // jQuery 버전
+      function clickPost(postId) {
+        let url = 'https://jsonplaceholder.typicode.com/posts/' + postId;
 
-        const title = row.querySelector('#title');
-        const contents = row.querySelector('#contents');
-
-        modalTitle.innerText = title.innerText;
-        modalBody.innerText = contents.innerText;
+        $.get(url).then(function (data) {
+          $('#exampleModalLabel').text(data.title);
+          $('#modalContent').text(data.body);
+          $('.modal').modal('show');
+        });
       }
 
-      document.addEventListener('DOMContentLoaded', async () => {
-        // table에 내용 채워넣기
-        const table = document.querySelector('.table-group-divider');
-
-        const URL = 'https://jsonplaceholder.typicode.com/posts';
-        await fetch(URL)
-          .then((response) => response.json())
-          .then((data) => {
-            for (let i = 0; i < data.length; i++) {
-              let title = data[i].title;
-              let userId = data[i].userId;
-              let contents = data[i].body;
-
-              table.insertAdjacentHTML(
-                'afterbegin',
-                `<tr class="table-row" data-id="${
-                  i + 1
-                }" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <th scope="row" class="text-center">${i + 1}</th>
-                  <td class="text-center" id="title">${title}</td>
-                  <td class="text-center" id="contents">${contents}</td>
-                  <td class="text-center">${userId}</td>
-                </tr>`
-              );
-            }
-          });
-
-        // 테이블의 각 행 클릭하면 모달 창 띄우기
-        const rows = document.querySelectorAll('.table-row');
-
-        for (let i = 0; i < rows.length; i++) {
-          rows[i].addEventListener('click', () => {
-            openModal(rows[i]);
-          });
-        }
+      $(document).ready(function () {
+        $('.fastCampus').click(function () {
+          let id = $(this).attr('id');
+          clickPost(id);
+        });
       });
     </script>
   </head>
@@ -75,11 +43,30 @@
           <tr>
             <th scope="row" class="text-center">#</th>
             <th class="text-center">제목</th>
-            <th class="text-center">내용</th>
             <th class="text-center">작성자</th>
+            <th class="text-center">일시</th>
           </tr>
         </thead>
-        <tbody class="table-group-divider"></tbody>
+        <tbody class="table-group-divider">
+          <tr onclick="clickPost(3);">
+            <th scope="row" class="text-center">3</th>
+            <td class="text-center">세번째 글입니다</td>
+            <td class="text-center">조수진</td>
+            <td class="text-center">2022.12.11</td>
+          </tr>
+          <tr onclick="clickPost(2);">
+            <th scope="row" class="text-center">2</th>
+            <td class="text-center">두번째로 작성한 글입니다</td>
+            <td class="text-center">조수진</td>
+            <td class="text-center">2022.12.11</td>
+          </tr>
+          <tr onclick="clickPost(1);">
+            <th scope="row" class="text-center">1</th>
+            <td class="text-center">첫번째 게시글입니다</td>
+            <td class="text-center">조수진</td>
+            <td class="text-center">2022.12.11</td>
+          </tr>
+        </tbody>
       </table>
     </div>
     <!-- Modal -->
@@ -101,7 +88,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body" id="modelContent"></div>
+          <div class="modal-body" id="modalContent"></div>
           <div class="modal-footer">
             <button
               type="button"
