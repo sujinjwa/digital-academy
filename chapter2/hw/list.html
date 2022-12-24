@@ -17,6 +17,22 @@
       integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // jQuery 버전
+      $(document).ready(function () {
+        $('.list-group-item').click(function () {
+          let id = $(this).attr('id');
+
+          let url = 'https://jsonplaceholder.typicode.com/posts/' + id;
+
+          $.get(url).then(function (data) {
+            $('#exampleModalLabel').text(data.title);
+            $('#modalContent').text(data.body);
+            $('#exampleModal').modal('show');
+          });
+        });
+      });
+    </script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
