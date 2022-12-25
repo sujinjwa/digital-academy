@@ -7,11 +7,20 @@ soup = BeautifulSoup(res.text, 'html.parser');
 # 'html.parser' : beautifulSoup이 약속해노흥ㄴ 값으로, html 코드 분석해달라는 의미
 
 
-for i in range(1, 40+1):
-    selector = '#bestList > ol > li.num' + str(i) + ' > p:nth-child(3) > a'
+# for i in range(1, 40+1):
+#     selector = '#bestList > ol > li.num' + str(i) + ' > p:nth-child(3) > a'
     
-    if i == 19 or i == 20:
-        selector = '#bestList > ol > li.num' + str(i) + '_line > p:nth-child(3) > a'
+#     if i == 19 or i == 20:
+#         selector = '#bestList > ol > li.num' + str(i) + '_line > p:nth-child(3) > a'
     
-    title = soup.select_one(selector).text
-    print(title)
+#     title = soup.select_one(selector).text
+#     print(title)
+
+selector = '#bestList > ol > li > p:nth-child(3) > a'
+titles = soup.select(selector)
+
+for i in range(40):
+    print(titles[i].text)
+
+# for title in titles:
+#    print(title.text)
