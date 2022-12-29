@@ -1,7 +1,22 @@
 import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/local'
+# 'mongodb://localhost:27017' 주소의 mongoDB에 'locla' 이름의 데이터베이스 사용하겠다는 의미
+mongo = PyMongo(app)
+
+@app.route('/write', methods=['POST'])
+def write():
+    # name = request.form['name']
+    # content = request.form['content']
+    name = request.form.get('name')
+    content = request.form.get('content')
+
+    # mongo.db['fastCampus'].insert_one({'~'})
+    mongo.db.fastCampus.insert_one({'name': name, 'content': content})
+    return redirect('/')
 
 @app.route('/')
 def index():

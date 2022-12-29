@@ -180,7 +180,11 @@
       </div>
       <div class="row1 guestbook-row">
         <h4>방명록 남기기</h4>
-        <form method="POST" action="/write" class="guestbook">
+        <form
+          method="POST"
+          action="http://127.0.0.1:5000/write"
+          class="guestbook"
+        >
           <input type="text" name="name" placeholder="이름" />
           <textarea rows="3" name="content" placeholder="내용"></textarea>
           <button type="submit">남기기</button>
