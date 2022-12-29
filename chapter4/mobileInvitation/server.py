@@ -14,8 +14,8 @@ def write():
     name = request.form.get('name')
     content = request.form.get('content')
 
-    # mongo.db['fastCampus'].insert_one({'~'})
-    mongo.db.fastCampus.insert_one({'name': name, 'content': content})
+    # mongo.db['wedding'].insert_one({'~'})
+    mongo.db.wedding.insert_one({'name': name, 'content': content})
     return redirect('/')
 
 @app.route('/')
@@ -24,7 +24,10 @@ def index():
     wedding = datetime.datetime(2023, 2, 18, 0, 0, 0) # 결혼식 날짜
     diff = (wedding - now).days
 
-    return render_template('index.html', diff=diff)
+    guests = mongo.db.wedding.find()
+    
+    
+    return render_template('index.html', diff=diff, guests=guests)
 
 if __name__ == '__main__':
     app.run()
