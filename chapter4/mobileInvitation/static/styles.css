@@ -164,6 +164,21 @@ body {
   white-space: pre;
 }
 
+.pagination {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: var(--black);
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin: 0px 5px;
+}
+
 .snowflake {
   position: absolute;
   width: 10px;

@@ -190,6 +190,7 @@
           <button type="submit">남기기</button>
         </form>
         <table>
+          <p class="countOfGuests">총 방명록 개수: {{ countOfAllGuests }}</p>
           <tbody>
             {% for gb in guests %}
             <tr>
@@ -199,6 +200,11 @@
             {% endfor %}
           </tbody>
         </table>
+        <div class="pagination">
+          {% for page in pages %}
+          <a href="/?page={{page}}">{{page}}</a>
+          {% endfor %}
+        </div>
       </div>
       <div class="row2">
         <h4>마음 전하실 곳</h4>
